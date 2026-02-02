@@ -1,16 +1,7 @@
 @import "tailwindcss";
 
-/* Terminal-ish theme (toggle via next-themes adding .dark on <html>) */
+/* Dark-only terminal-ish theme */
 :root {
-  --bg: 255 255 255;
-  --fg: 9 9 11;
-  --muted: 82 82 91;
-  --card: 255 255 255;
-  --border: 228 228 231;
-  --accent: 5 150 105; /* emerald-600 */
-}
-
-html.dark {
   --bg: 9 9 11;
   --fg: 244 244 245;
   --muted: 161 161 170;
