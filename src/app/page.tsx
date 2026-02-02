@@ -6,13 +6,26 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-12">
       <section className="flex flex-col gap-4">
-        <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-          {site.name}
-        </h1>
+        <div className="flex flex-col gap-2">
+          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+            {site.name}
+          </h1>
+          <p className="text-base text-zinc-600 dark:text-zinc-400">
+            {site.title}
+          </p>
+        </div>
+
         <p className="text-lg text-zinc-600 dark:text-zinc-400">
-          {site.title}. {site.description}
+          {site.description}
         </p>
+
         <div className="flex flex-wrap gap-3 pt-2 text-sm">
+          <a
+            className="rounded-full border border-zinc-200 px-4 py-2 hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:border-zinc-700 dark:hover:bg-zinc-900"
+            href={site.links.resume}
+          >
+            Resume
+          </a>
           <a
             className="rounded-full border border-zinc-200 px-4 py-2 hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:border-zinc-700 dark:hover:bg-zinc-900"
             href={site.links.github}
@@ -38,6 +51,11 @@ export default function Home() {
             Telegram
           </a>
         </div>
+
+        <div className="pt-2 text-sm text-zinc-500 dark:text-zinc-500">
+          Currently exploring: building products end-to-end, Web3 UX, and RAG
+          pipelines.
+        </div>
       </section>
 
       <section className="flex flex-col gap-4">
@@ -53,11 +71,9 @@ export default function Home() {
 
         <div className="grid gap-4">
           {projects.slice(0, 3).map((p) => (
-            <a
-              key={p.repoUrl}
-              href={p.repoUrl}
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              key={p.slug}
+              href={`/projects/${p.slug}`}
               className="rounded-xl border border-zinc-200 p-5 transition-colors hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900"
             >
               <div className="flex items-start justify-between gap-4">
@@ -78,7 +94,7 @@ export default function Home() {
                   </span>
                 ))}
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </section>

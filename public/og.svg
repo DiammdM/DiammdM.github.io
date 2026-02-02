@@ -1,0 +1,17 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A0A0A"/>
+      <stop offset="1" stop-color="#1F2937"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" rx="48" fill="url(#g)"/>
+  <g opacity="0.12">
+    <circle cx="980" cy="170" r="210" fill="#FFFFFF"/>
+    <circle cx="260" cy="540" r="180" fill="#FFFFFF"/>
+  </g>
+  <text x="90" y="220" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto" font-size="72" font-weight="700" fill="#FFFFFF">Diammd</text>
+  <text x="90" y="300" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto" font-size="38" font-weight="500" fill="#D1D5DB">Software Engineer</text>
+  <text x="90" y="380" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto" font-size="30" font-weight="400" fill="#9CA3AF">Web • Web3 • RAG</text>
+  <text x="90" y="520" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas" font-size="22" fill="#9CA3AF">diammdm.github.io</text>
+</svg>
