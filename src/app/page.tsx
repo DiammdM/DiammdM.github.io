@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
 import { projects } from "@/lib/projects";
+import { toYouTubeEmbedUrl } from "@/lib/youtube";
 
 export default function Home() {
   return (
@@ -114,11 +115,46 @@ export default function Home() {
         </div>
       </section>
 
+      {projects.find((p) => p.demoUrl)?.demoUrl ? (
+        <section className="rounded-xl border border-zinc-800/70 bg-zinc-950/30 p-5 backdrop-blur">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="font-mono text-xs text-emerald-400">// demo</p>
+              <h2 className="text-xl font-semibold tracking-tight">Badgex demo video</h2>
+              <p className="text-sm text-zinc-400">
+                A quick walkthrough for <span className="font-mono">badgex-contract</span> and <span className="font-mono">badgex-dapp</span>.
+              </p>
+            </div>
+            <a
+              className="mt-2 inline-flex w-fit rounded-md border border-zinc-800 bg-zinc-950/40 px-3 py-2 font-mono text-xs text-zinc-200 hover:border-zinc-700 sm:mt-0"
+              href={projects.find((p) => p.demoUrl)?.demoUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              open on youtube →
+            </a>
+          </div>
+
+          <div className="mt-4 overflow-hidden rounded-lg border border-zinc-800 bg-black/30">
+            <div className="relative aspect-video">
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src={toYouTubeEmbedUrl(projects.find((p) => p.demoUrl)?.demoUrl as string)}
+                title="Badgex demo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       <section className="flex flex-col gap-4">
         <div className="flex items-end justify-between">
           <h2 className="text-xl font-semibold tracking-tight">Featured projects</h2>
           <Link
-            href="/projects"
+            href="/projects/"
             className="text-sm text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white"
           >
             View all
@@ -129,19 +165,15 @@ export default function Home() {
           {projects.slice(0, 3).map((p) => (
             <Link
               key={p.slug}
-              href={`/projects/${p.slug}`}
-              className="group rounded-xl border border-zinc-200 bg-white/30 p-5 backdrop-blur transition-colors hover:bg-white/60 dark:border-zinc-800 dark:bg-zinc-950/30 dark:hover:bg-zinc-950/60"
+              href={`/projects/${p.slug}/`}
+              className="group rounded-xl border border-zinc-800/70 bg-zinc-950/30 p-5 backdrop-blur transition-colors hover:bg-zinc-950/60"
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <div className="font-medium text-zinc-900 dark:text-zinc-100">
-                    {p.name}
-                  </div>
-                  <div className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-                    {p.summary}
-                  </div>
+                  <div className="font-medium text-zinc-100">{p.name}</div>
+                  <div className="mt-1 text-sm text-zinc-400">{p.summary}</div>
                 </div>
-                <div className="font-mono text-xs text-emerald-600 opacity-0 transition-opacity group-hover:opacity-100 dark:text-emerald-400">
+                <div className="font-mono text-xs text-emerald-400 opacity-0 transition-opacity group-hover:opacity-100">
                   view →
                 </div>
               </div>
@@ -149,7 +181,7 @@ export default function Home() {
                 {p.tags.map((t) => (
                   <span
                     key={t}
-                    className="rounded-md border border-zinc-200 bg-white/40 px-2 py-1 text-xs text-zinc-700 dark:border-zinc-800 dark:bg-zinc-950/40 dark:text-zinc-300"
+                    className="rounded-md border border-zinc-800 bg-zinc-950/40 px-2 py-1 text-xs text-zinc-300"
                   >
                     {t}
                   </span>

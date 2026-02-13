@@ -22,7 +22,7 @@ export default function ProjectsPage() {
         {projects.map((p) => (
           <Link
             key={p.slug}
-            href={`/projects/${p.slug}`}
+            href={`/projects/${p.slug}/`}
             className="group rounded-xl border border-zinc-200 bg-white/30 p-5 backdrop-blur transition-colors hover:bg-white/60 dark:border-zinc-800 dark:bg-zinc-950/30 dark:hover:bg-zinc-950/60"
           >
             <div className="flex flex-col gap-2">

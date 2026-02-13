@@ -29,7 +29,7 @@ export default function ProjectDetailPage({
       <header className="flex flex-col gap-3">
         <div className="text-sm text-zinc-500 dark:text-zinc-500">
           <Link
-            href="/projects"
+            href="/projects/"
             className="font-mono text-xs hover:text-zinc-950 dark:hover:text-white"
           >
             ← cd ../projects

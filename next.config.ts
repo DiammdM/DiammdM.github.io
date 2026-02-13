@@ -6,6 +6,7 @@ const isProd = process.env.NODE_ENV === "production";
 
 const nextConfig: NextConfig = {
   output: "export",
+  trailingSlash: true,
   images: { unoptimized: true },
   // For project pages: https://<user>.github.io/<repo>/
   // If you use user/organization pages (<user>.github.io), basePath should be "".

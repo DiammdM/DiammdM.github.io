@@ -2,8 +2,8 @@ import Link from "next/link";
 
 const nav = [
   { href: "/", label: "Home" },
-  { href: "/projects", label: "Projects" },
-  { href: "/about", label: "About" },
+  { href: "/projects/", label: "Projects" },
+  { href: "/about/", label: "About" },
 ];
 
 export function Nav() {
