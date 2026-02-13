@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects } from "@/lib/projects";
+import { toYouTubeEmbedUrl } from "@/lib/youtube";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -89,6 +90,37 @@ export default function ProjectDetailPage({
           </div>
         </div>
       </section>
+
+      {project.demoUrl ? (
+        <section className="rounded-xl border border-zinc-200 bg-white/30 p-5 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/30">
+          <div className="flex items-center justify-between gap-3">
+            <h2 className="font-mono text-xs text-emerald-600 dark:text-emerald-400">
+              // demo
+            </h2>
+            <a
+              href={project.demoUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="font-mono text-xs text-zinc-500 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white"
+            >
+              open on youtube →
+            </a>
+          </div>
+
+          <div className="mt-3 overflow-hidden rounded-lg border border-zinc-200 bg-black/20 dark:border-zinc-800">
+            <div className="relative aspect-video">
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src={toYouTubeEmbedUrl(project.demoUrl)}
+                title={`${project.name} demo`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="rounded-xl border border-zinc-200 bg-white/30 p-5 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/30">
         <h2 className="mb-3 font-mono text-xs text-emerald-600 dark:text-emerald-400">

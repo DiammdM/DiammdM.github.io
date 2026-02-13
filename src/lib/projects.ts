@@ -4,6 +4,7 @@ export type Project = {
   repoUrl: string;
   summary: string;
   tags: string[];
+  demoUrl?: string;
   details: {
     overview: string;
     highlights: string[];
@@ -16,6 +17,7 @@ export const projects: Project[] = [
     slug: "badgex-contract",
     name: "Badgex Contract",
     repoUrl: "https://github.com/DiammdM/badgex-contract",
+    demoUrl: "https://www.youtube.com/watch?v=Fa0Sg-hTsgw",
     summary:
       "Smart contracts for the Badgex NFT badge system (Solidity, Hardhat, Foundry).",
     tags: ["Solidity", "Foundry", "Hardhat"],
@@ -34,6 +36,7 @@ export const projects: Project[] = [
     slug: "badgex-dapp",
     name: "Badgex dApp",
     repoUrl: "https://github.com/DiammdM/badgex-dapp",
+    demoUrl: "https://www.youtube.com/watch?v=Fa0Sg-hTsgw",
     summary:
       "Web3 dApp for the Badgex NFT badge system (Next.js, wagmi, viem, RainbowKit).",
     tags: ["Next.js", "wagmi", "viem"],
