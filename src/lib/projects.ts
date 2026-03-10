@@ -56,17 +56,18 @@ export const projects: Project[] = [
     name: "Ragify",
     repoUrl: "https://github.com/DiammdM/Ragify",
     summary:
-      "Next.js RAG knowledge base with transformers, MongoDB, Qdrant, and multi-model chat.",
-    tags: ["Next.js", "RAG", "Qdrant"],
+      "Next.js RAG knowledge base with LangChain agent workflows, MongoDB, Qdrant, and multi-model chat.",
+    tags: ["Next.js", "RAG", "LangChain"],
     details: {
       overview:
         "A Next.js RAG knowledge-base app with document ingestion, vector search, reranking, and model switching.",
       highlights: [
         "Document library with indexing progress and chunk-level retrieval.",
         "Vector search backed by Qdrant with optional cross-encoder reranking.",
+        "LangChain-powered agent workflows with tool calling and retrieval orchestration.",
         "Multi-model chat: OpenAI/Gemini/DeepSeek/Ollama, plus auth/roles.",
       ],
-      stack: ["Next.js", "Tailwind", "MongoDB", "Qdrant", "Transformers"],
+      stack: ["Next.js", "LangChain", "Tailwind", "MongoDB", "Qdrant", "Transformers"],
     },
   },
 ];

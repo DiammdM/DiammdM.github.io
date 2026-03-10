@@ -15,10 +15,6 @@ export default function sitemap() {
       url: `${site.url}/about`,
       lastModified: now,
     },
-    {
-      url: `${site.url}/projects`,
-      lastModified: now,
-    },
     ...projects.map((p) => ({
       url: `${site.url}/projects/${p.slug}`,
       lastModified: now,

@@ -1,26 +1,38 @@
 import { site } from "@/lib/site";
 
+const links = [
+  { href: site.links.github, label: "GitHub" },
+  { href: site.links.linkedin, label: "LinkedIn" },
+  { href: site.links.telegram, label: "Telegram" },
+  { href: site.links.resume, label: "Resume" },
+];
+
 export function Footer() {
   return (
-    <footer className="border-t border-zinc-200/70 bg-white/30 py-8 text-sm text-zinc-600 backdrop-blur dark:border-zinc-800/70 dark:bg-zinc-950/30 dark:text-zinc-400">
-      <div className="mx-auto flex max-w-4xl flex-col gap-2 px-5">
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs">
-          <a className="hover:text-zinc-950 dark:hover:text-white" href={site.links.resume}>
-            resume
-          </a>
-          <a className="hover:text-zinc-950 dark:hover:text-white" href={site.links.github} target="_blank" rel="noreferrer">
-            github
-          </a>
-          <a className="hover:text-zinc-950 dark:hover:text-white" href={site.links.linkedin} target="_blank" rel="noreferrer">
-            linkedin
-          </a>
-          <a className="hover:text-zinc-950 dark:hover:text-white" href={site.links.telegram} target="_blank" rel="noreferrer">
-            telegram
-          </a>
+    <footer className="border-t soft-divider bg-[rgba(255,255,255,0.58)]">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+        <div>
+          <p className="font-display text-base font-semibold">{site.name}</p>
+          <p className="mt-1 text-sm text-[rgba(21,32,43,0.62)]">{site.title}</p>
         </div>
-        <div className="font-mono text-xs text-zinc-500 dark:text-zinc-500">
-          © {new Date().getFullYear()} {site.name} · built with next.js
+
+        <div className="flex flex-wrap items-center gap-2">
+          {links.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              target={item.href.startsWith("http") ? "_blank" : undefined}
+              rel={item.href.startsWith("http") ? "noreferrer" : undefined}
+              className="pill"
+            >
+              {item.label}
+            </a>
+          ))}
         </div>
+
+        <p className="font-mono-ui text-xs text-[rgba(21,32,43,0.55)]">
+          © {new Date().getFullYear()} built with Next.js
+        </p>
       </div>
     </footer>
   );

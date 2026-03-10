@@ -2,7 +2,7 @@ export const site = {
   name: "Diammd",
   title: "Software Engineer",
   description:
-    "I build reliable web products and ship clean UIs. I’m especially interested in practical AI systems (RAG) and Web3 tooling.",
+    "I build reliable web products and ship clean UIs. I’m especially interested in practical AI systems (RAG), LangChain agent workflows, and Web3 tooling.",
   url: "https://diammdm.github.io",
   links: {
     github: "https://github.com/DiammdM",

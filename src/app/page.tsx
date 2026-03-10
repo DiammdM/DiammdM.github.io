@@ -4,189 +4,184 @@ import { projects } from "@/lib/projects";
 import { toYouTubeEmbedUrl } from "@/lib/youtube";
 
 export default function Home() {
+  const featuredProjects = projects.slice(0, 3);
+  const demoProjects = projects.filter(
+    (project): project is (typeof projects)[number] & { demoUrl: string } =>
+      typeof project.demoUrl === "string",
+  );
+  const highlights = [
+    { label: "Projects Listed", value: String(projects.length) },
+    { label: "Demo Videos", value: String(demoProjects.length) },
+    { label: "Core Focus", value: "Web + AI" },
+  ];
+
   return (
-    <div className="flex flex-col gap-10">
-      <section className="grid gap-6 lg:grid-cols-12">
-        <div className="lg:col-span-6">
-          <div className="flex flex-col gap-3">
-            <p className="font-mono text-xs text-emerald-600 dark:text-emerald-400">
-              // software engineer
-            </p>
-            <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-              {site.name}
-            </h1>
-            <p className="text-base text-zinc-600 dark:text-zinc-400">
-              {site.title}
-            </p>
-            <p className="text-lg text-zinc-600 dark:text-zinc-400">
-              {site.description}
-            </p>
+    <div className="flex flex-col gap-8 sm:gap-10">
+      <section className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
+        <article className="surface-card fade-up p-6 sm:p-8">
+          <p className="kicker">Software Engineer Portfolio</p>
+          <h1 className="font-display mt-4 text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
+            {site.name}
+          </h1>
+          <p className="mt-3 max-w-2xl text-lg text-[rgba(21,32,43,0.72)] sm:text-xl">
+            {site.description}
+          </p>
 
-            <div className="flex flex-wrap gap-3 pt-2 text-sm">
-              <a
-                className="rounded-md border border-zinc-200 bg-white/40 px-4 py-2 font-mono text-xs text-zinc-800 backdrop-blur hover:border-zinc-300 hover:bg-white/70 dark:border-zinc-800 dark:bg-zinc-950/40 dark:text-zinc-200 dark:hover:border-zinc-700 dark:hover:bg-zinc-950/70"
-                href={site.links.resume}
-              >
-                resume.pdf
-              </a>
-              <a
-                className="rounded-md border border-zinc-200 bg-white/40 px-4 py-2 font-mono text-xs text-zinc-800 backdrop-blur hover:border-zinc-300 hover:bg-white/70 dark:border-zinc-800 dark:bg-zinc-950/40 dark:text-zinc-200 dark:hover:border-zinc-700 dark:hover:bg-zinc-950/70"
-                href={site.links.github}
-                target="_blank"
-                rel="noreferrer"
-              >
-                github
-              </a>
-              <a
-                className="rounded-md border border-zinc-200 bg-white/40 px-4 py-2 font-mono text-xs text-zinc-800 backdrop-blur hover:border-zinc-300 hover:bg-white/70 dark:border-zinc-800 dark:bg-zinc-950/40 dark:text-zinc-200 dark:hover:border-zinc-700 dark:hover:bg-zinc-950/70"
-                href={site.links.linkedin}
-                target="_blank"
-                rel="noreferrer"
-              >
-                linkedin
-              </a>
-              <a
-                className="rounded-md border border-zinc-200 bg-white/40 px-4 py-2 font-mono text-xs text-zinc-800 backdrop-blur hover:border-zinc-300 hover:bg-white/70 dark:border-zinc-800 dark:bg-zinc-950/40 dark:text-zinc-200 dark:hover:border-zinc-700 dark:hover:bg-zinc-950/70"
-                href={site.links.telegram}
-                target="_blank"
-                rel="noreferrer"
-              >
-                telegram
-              </a>
-            </div>
-
-            <div className="pt-2 text-sm text-zinc-500 dark:text-zinc-500">
-              Focus: product engineering, web3 UX, and RAG pipelines.
-            </div>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a href={site.links.resume} className="primary-btn">
+              View Resume
+            </a>
+            <Link href="/#selected-work" className="ghost-btn">
+              Explore Work
+            </Link>
           </div>
-        </div>
 
-        <div className="lg:col-span-6">
-          <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white/40 shadow-sm backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/40">
-            <div className="flex items-center gap-2 border-b border-zinc-200/70 px-4 py-2 dark:border-zinc-800/70">
-              <div className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
-              <div className="h-2.5 w-2.5 rounded-full bg-yellow-400/80" />
-              <div className="h-2.5 w-2.5 rounded-full bg-green-400/80" />
-              <div className="ml-2 font-mono text-xs text-zinc-500">
-                zsh — ~/diammd
+          <div className="mt-7 flex flex-wrap gap-2">
+            <span className="pill">Product Engineering</span>
+            <span className="pill">Web3 Experiences</span>
+            <span className="pill">RAG Systems</span>
+            <span className="pill">LangChain Agents</span>
+          </div>
+        </article>
+
+        <article className="surface-card fade-up delay-1 flex h-full flex-col justify-between p-6">
+          <div>
+            <p className="kicker">Snapshot</p>
+            <p className="mt-3 text-sm text-[rgba(21,32,43,0.7)]">
+              {site.title} focused on building reliable user-facing products with clear technical tradeoffs and practical LangChain-based agent workflows.
+            </p>
+          </div>
+
+          <div className="mt-6 grid gap-3">
+            {highlights.map((item) => (
+              <div
+                key={item.label}
+                className="rounded-2xl border border-[rgba(21,32,43,0.1)] bg-white/75 px-4 py-3"
+              >
+                <p className="font-mono-ui text-xs uppercase tracking-wide text-[rgba(21,32,43,0.52)]">
+                  {item.label}
+                </p>
+                <p className="font-display mt-1 text-2xl font-semibold">{item.value}</p>
               </div>
-            </div>
-            <div className="space-y-2 p-4 font-mono text-xs">
-              <div>
-                <span className="text-emerald-600 dark:text-emerald-400">$</span>{" "}
-                <span className="text-zinc-900 dark:text-zinc-100">whoami</span>
-              </div>
-              <div className="text-zinc-600 dark:text-zinc-400">
-                software engineer · build things · ship
-              </div>
-              <div>
-                <span className="text-emerald-600 dark:text-emerald-400">$</span>{" "}
-                <span className="text-zinc-900 dark:text-zinc-100">
-                  ls projects/
-                </span>
-              </div>
-              <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-zinc-600 dark:text-zinc-400 sm:grid-cols-3">
-                {projects.slice(0, 3).map((p) => (
-                  <span key={p.slug} className="truncate">
-                    {p.slug}
-                  </span>
-                ))}
-              </div>
-              <div>
-                <span className="text-emerald-600 dark:text-emerald-400">$</span>{" "}
-                <span className="text-zinc-900 dark:text-zinc-100">
-                  open projects/
-                </span>
-                <span className="text-zinc-500"> (click below)</span>
-              </div>
-              <div className="flex flex-wrap gap-2 pt-1">
-                {projects.slice(0, 3).map((p) => (
-                  <Link
-                    key={p.slug}
-                    href={`/projects/${p.slug}`}
-                    className="rounded-md border border-zinc-200 bg-white/30 px-2.5 py-1 text-zinc-700 hover:border-zinc-300 hover:bg-white/60 dark:border-zinc-800 dark:bg-zinc-950/30 dark:text-zinc-300 dark:hover:border-zinc-700 dark:hover:bg-zinc-950/60"
-                  >
-                    {p.slug}
-                  </Link>
-                ))}
-              </div>
-            </div>
+            ))}
+          </div>
+        </article>
+      </section>
+
+      <section className="surface-card fade-up delay-1 p-6 sm:p-7">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p className="kicker">Connect</p>
+            <h2 className="font-display mt-1 text-2xl font-semibold sm:text-3xl">
+              Find me online
+            </h2>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <a className="pill" href={site.links.github} target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+            <a className="pill" href={site.links.linkedin} target="_blank" rel="noreferrer">
+              LinkedIn
+            </a>
+            <a className="pill" href={site.links.telegram} target="_blank" rel="noreferrer">
+              Telegram
+            </a>
           </div>
         </div>
       </section>
 
-      {projects.find((p) => p.demoUrl)?.demoUrl ? (
-        <section className="rounded-xl border border-zinc-800/70 bg-zinc-950/30 p-5 backdrop-blur">
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+      {demoProjects.length > 0 ? (
+        <section className="surface-card fade-up delay-2 overflow-hidden p-6 sm:p-7">
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-1">
             <div>
-              <p className="font-mono text-xs text-emerald-400">// demo</p>
-              <h2 className="text-xl font-semibold tracking-tight">Badgex demo video</h2>
-              <p className="text-sm text-zinc-400">
-                A quick walkthrough for <span className="font-mono">badgex-contract</span> and <span className="font-mono">badgex-dapp</span>.
+              <p className="kicker">Project Demos</p>
+              <h2 className="font-display mt-1 text-2xl font-semibold sm:text-3xl">
+                Demo Gallery
+              </h2>
+              <p className="mt-2 text-sm text-[rgba(21,32,43,0.72)]">
+                Product walkthroughs for shipped projects.
               </p>
             </div>
-            <a
-              className="mt-2 inline-flex w-fit rounded-md border border-zinc-800 bg-zinc-950/40 px-3 py-2 font-mono text-xs text-zinc-200 hover:border-zinc-700 sm:mt-0"
-              href={projects.find((p) => p.demoUrl)?.demoUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              open on youtube →
-            </a>
           </div>
 
-          <div className="mt-4 overflow-hidden rounded-lg border border-zinc-800 bg-black/30">
-            <div className="relative aspect-video">
-              <iframe
-                className="absolute inset-0 h-full w-full"
-                src={toYouTubeEmbedUrl(projects.find((p) => p.demoUrl)?.demoUrl as string)}
-                title="Badgex demo"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              />
-            </div>
+          <div className="mt-5 grid gap-4 lg:grid-cols-2">
+            {demoProjects.map((project) => (
+              <article key={project.slug} className="rounded-2xl border border-[rgba(21,32,43,0.14)] bg-white/75 p-4">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="kicker">{project.slug}</p>
+                    <h3 className="font-display mt-1 text-xl font-semibold">{project.name}</h3>
+                    <p className="mt-2 text-sm text-[rgba(21,32,43,0.72)]">{project.summary}</p>
+                  </div>
+                  <a
+                    className="ghost-btn"
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    YouTube
+                  </a>
+                </div>
+
+                <div className="mt-4 overflow-hidden rounded-2xl border border-[rgba(21,32,43,0.14)] bg-black/85">
+                  <div className="relative aspect-video">
+                    <iframe
+                      className="absolute inset-0 h-full w-full"
+                      src={toYouTubeEmbedUrl(project.demoUrl)}
+                      title={`${project.name} demo`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
+
+          {demoProjects.find((p) => p.slug === "ragify") ? null : (
+            <div className="mt-4 rounded-2xl border border-dashed border-[rgba(21,32,43,0.2)] bg-white/55 px-4 py-3 text-sm text-[rgba(21,32,43,0.72)]">
+              Ragify demo card is ready. Add its YouTube `demoUrl` in <code>src/lib/projects.ts</code> and it will show here automatically.
+            </div>
+          )}
         </section>
       ) : null}
 
-      <section className="flex flex-col gap-4">
-        <div className="flex items-end justify-between">
-          <h2 className="text-xl font-semibold tracking-tight">Featured projects</h2>
-          <Link
-            href="/projects/"
-            className="text-sm text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white"
-          >
-            View all
-          </Link>
+      <section id="selected-work" className="fade-up delay-3 flex flex-col gap-4">
+        <div className="flex flex-wrap items-end justify-between gap-2">
+          <div>
+            <p className="kicker">Selected Work</p>
+            <h2 className="font-display mt-1 text-2xl font-semibold sm:text-3xl">
+              Featured Projects
+            </h2>
+          </div>
+          <a href={site.links.github} target="_blank" rel="noreferrer" className="ghost-btn">
+            More on GitHub
+          </a>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          {projects.slice(0, 3).map((p) => (
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {featuredProjects.map((project) => (
             <Link
-              key={p.slug}
-              href={`/projects/${p.slug}/`}
-              className="group rounded-xl border border-zinc-800/70 bg-zinc-950/30 p-5 backdrop-blur transition-colors hover:bg-zinc-950/60"
+              key={project.slug}
+              href={`/projects/${project.slug}/`}
+              className="surface-card group p-5 transition duration-200 hover:-translate-y-1"
             >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <div className="font-medium text-zinc-100">{p.name}</div>
-                  <div className="mt-1 text-sm text-zinc-400">{p.summary}</div>
-                </div>
-                <div className="font-mono text-xs text-emerald-400 opacity-0 transition-opacity group-hover:opacity-100">
-                  view →
-                </div>
-              </div>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {p.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="rounded-md border border-zinc-800 bg-zinc-950/40 px-2 py-1 text-xs text-zinc-300"
-                  >
-                    {t}
+              <p className="kicker">{project.slug}</p>
+              <h3 className="font-display mt-2 text-xl font-semibold">{project.name}</h3>
+              <p className="mt-2 text-sm text-[rgba(21,32,43,0.72)]">{project.summary}</p>
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <span key={tag} className="pill">
+                    {tag}
                   </span>
                 ))}
               </div>
+
+              <p className="mt-5 text-sm font-semibold text-[rgb(10,90,84)] opacity-0 transition group-hover:opacity-100">
+                Read case study →
+              </p>
             </Link>
           ))}
         </div>

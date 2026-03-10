@@ -1,5 +1,11 @@
-import { TerminalBlock } from "@/components/TerminalBlock";
 import { site } from "@/lib/site";
+
+const principles = [
+  "Prefer simple architecture before adding abstractions.",
+  "Ship vertical slices early, then optimize with real feedback.",
+  "Design interfaces that feel clear, not clever.",
+  "Balance product speed with maintainable code quality.",
+];
 
 export const metadata = {
   title: "About",
@@ -8,83 +14,66 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <div className="flex flex-col gap-6">
-      <header className="flex flex-col gap-2">
-        <p className="font-mono text-xs text-emerald-600 dark:text-emerald-400">
-          // about
+      <section className="surface-card fade-up p-6 sm:p-7">
+        <p className="kicker">About Me</p>
+        <h1 className="font-display mt-2 text-4xl font-semibold sm:text-5xl">{site.name}</h1>
+        <p className="mt-3 max-w-3xl text-base text-[rgba(21,32,43,0.72)] sm:text-lg">
+          {site.title} building reliable web products with a focus on practical AI systems, LangChain agent development, and polished end-user experience.
         </p>
-        <h1 className="text-2xl font-semibold tracking-tight">About</h1>
-        <p className="text-zinc-600 dark:text-zinc-400">
-          A quick snapshot of what I do and what I’m into.
-        </p>
-      </header>
+      </section>
 
-      <TerminalBlock
-        title="profile.json"
-        lines={[
-          { prompt: "cat profile.json", text: "" },
-          {
-            text: `name: ${site.name}`,
-            dim: true,
-          },
-          {
-            text: `role: ${site.title}`,
-            dim: true,
-          },
-          {
-            text: "interests: product engineering, web3 UX, RAG systems",
-            dim: true,
-          },
-          {
-            prompt: "open links",
-            text: "(below)",
-          },
-        ]}
-      />
+      <section className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+        <article className="surface-card fade-up delay-1 p-6">
+          <p className="kicker">How I Work</p>
+          <ul className="mt-4 space-y-3">
+            {principles.map((item) => (
+              <li key={item} className="rounded-2xl border border-[rgba(21,32,43,0.1)] bg-white/75 px-4 py-3 text-sm text-[rgba(21,32,43,0.8)]">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </article>
 
-      <div className="grid gap-3 sm:grid-cols-2">
-        <a
-          className="rounded-xl border border-zinc-200 bg-white/30 p-4 font-mono text-xs text-zinc-700 backdrop-blur transition-colors hover:bg-white/60 dark:border-zinc-800 dark:bg-zinc-950/30 dark:text-zinc-300 dark:hover:bg-zinc-950/60"
-          href={site.links.github}
-          target="_blank"
-          rel="noreferrer"
-        >
-          github →
-          <div className="mt-1 truncate text-zinc-500 dark:text-zinc-500">
-            {site.links.github}
+        <article className="surface-card fade-up delay-2 p-6">
+          <p className="kicker">Links</p>
+          <div className="mt-4 flex flex-col gap-3">
+            <a
+              href={site.links.github}
+              target="_blank"
+              rel="noreferrer"
+              className="surface-card-strong rounded-2xl px-4 py-3"
+            >
+              <p className="font-display text-lg font-semibold">GitHub</p>
+              <p className="mt-1 text-sm text-[rgba(21,32,43,0.66)]">{site.links.github}</p>
+            </a>
+
+            <a
+              href={site.links.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="surface-card-strong rounded-2xl px-4 py-3"
+            >
+              <p className="font-display text-lg font-semibold">LinkedIn</p>
+              <p className="mt-1 text-sm text-[rgba(21,32,43,0.66)]">{site.links.linkedin}</p>
+            </a>
+
+            <a
+              href={site.links.telegram}
+              target="_blank"
+              rel="noreferrer"
+              className="surface-card-strong rounded-2xl px-4 py-3"
+            >
+              <p className="font-display text-lg font-semibold">Telegram</p>
+              <p className="mt-1 text-sm text-[rgba(21,32,43,0.66)]">{site.links.telegram}</p>
+            </a>
+
+            <a href={site.links.resume} className="surface-card-strong rounded-2xl px-4 py-3">
+              <p className="font-display text-lg font-semibold">Resume</p>
+              <p className="mt-1 text-sm text-[rgba(21,32,43,0.66)]">{site.url}/resume.pdf</p>
+            </a>
           </div>
-        </a>
-        <a
-          className="rounded-xl border border-zinc-200 bg-white/30 p-4 font-mono text-xs text-zinc-700 backdrop-blur transition-colors hover:bg-white/60 dark:border-zinc-800 dark:bg-zinc-950/30 dark:text-zinc-300 dark:hover:bg-zinc-950/60"
-          href={site.links.linkedin}
-          target="_blank"
-          rel="noreferrer"
-        >
-          linkedin →
-          <div className="mt-1 truncate text-zinc-500 dark:text-zinc-500">
-            {site.links.linkedin}
-          </div>
-        </a>
-        <a
-          className="rounded-xl border border-zinc-200 bg-white/30 p-4 font-mono text-xs text-zinc-700 backdrop-blur transition-colors hover:bg-white/60 dark:border-zinc-800 dark:bg-zinc-950/30 dark:text-zinc-300 dark:hover:bg-zinc-950/60"
-          href={site.links.telegram}
-          target="_blank"
-          rel="noreferrer"
-        >
-          telegram →
-          <div className="mt-1 truncate text-zinc-500 dark:text-zinc-500">
-            {site.links.telegram}
-          </div>
-        </a>
-        <a
-          className="rounded-xl border border-zinc-200 bg-white/30 p-4 font-mono text-xs text-zinc-700 backdrop-blur transition-colors hover:bg-white/60 dark:border-zinc-800 dark:bg-zinc-950/30 dark:text-zinc-300 dark:hover:bg-zinc-950/60"
-          href={site.links.resume}
-        >
-          resume →
-          <div className="mt-1 truncate text-zinc-500 dark:text-zinc-500">
-            {site.url}/resume.pdf
-          </div>
-        </a>
-      </div>
+        </article>
+      </section>
     </div>
   );
 }

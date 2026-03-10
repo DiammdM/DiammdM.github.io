@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
 // Deploying to GitHub Pages (project pages)
-const repo = "DiammdM.github.io";
 const isProd = process.env.NODE_ENV === "production";
 
 const nextConfig: NextConfig = {
